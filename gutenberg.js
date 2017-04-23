@@ -35,7 +35,7 @@ export default function (ctx, done) {
     .then(resp => resp.json())
     .then(json => {
       let poems = json.details
-      let mutation = ""
+      console.log(poems)
       poems.forEach( (poem) => {
         if (poem.linecount < 50) {
           fetch(shakespeareDb, dbOptions(poem))
