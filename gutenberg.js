@@ -34,8 +34,7 @@ export default function (ctx, done) {
   fetch(poetryDb, poetryOptions)
     .then(resp => resp.json())
     .then(json => {
-      let poems = json.details
-      console.log(poems)
+      let poems = json
       poems.forEach( (poem) => {
         if (poem.linecount < 50) {
           fetch(shakespeareDb, dbOptions(poem))
