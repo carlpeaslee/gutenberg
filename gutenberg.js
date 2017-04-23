@@ -28,7 +28,7 @@ export default function (ctx, done) {
               author: "${poem.author}"
               title: "${poem.title}"
               lines: ${poem.linecount}
-              text: "${text}"
+              text: ${text}
             ) {
               id
             }
