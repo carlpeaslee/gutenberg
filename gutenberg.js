@@ -13,7 +13,6 @@ export default function (ctx, done) {
 
     let json = JSON.stringify(poem.lines)
     json = json.replace('"', '\"')
-
     return {
       method: 'POST',
       headers: {
@@ -26,7 +25,7 @@ export default function (ctx, done) {
               author: "${poem.author}"
               title: "${poem.title}"
               lines: ${poem.linecount}
-              text: ${json}
+              text: "${json}"
             ) {
               id
             }
@@ -44,10 +43,11 @@ export default function (ctx, done) {
       console.log("poems", poems )
       poems.forEach( (poem) => {
         if (poem.lines.length < 40) {
-          fetch(shakespeareDb, dbOptions(poem))
-            .then(resp=>resp.json())
-            .then(json => console.log(json))
-            .catch(e => console.log(e))
+          console.log(dbOptions(poem) )
+          // fetch(shakespeareDb, dbOptions(poem))
+          //   .then(resp=>resp.json())
+          //   .then(json => console.log(json))
+          //   .catch(e => console.log(e))
         }
       })
     })
