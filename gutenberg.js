@@ -10,6 +10,10 @@ export default function (ctx, done) {
 
   let shakespeareDb = 'https://api.graph.cool/simple/v1/shakespeare'
   let dbOptions = (poem) => {
+
+    let json = JSON.stringify(poem.lines)
+    json = json.replace('"', '\"')
+
     return {
       method: 'POST',
       headers: {
@@ -22,7 +26,7 @@ export default function (ctx, done) {
               author: "${poem.author}"
               title: "${poem.title}"
               lines: ${poem.linecount}
-              text: \"${JSON.stringify(poem.lines)}\"
+              text: "${json}"
             ) {
               id
             }
