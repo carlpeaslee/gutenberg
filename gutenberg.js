@@ -6,13 +6,20 @@ export default function (ctx, done) {
   let top100 = 'https://www.gutenberg.org/browse/scores/top'
 
 
-  jsdom.env(top100, (err, window) => {
-    console.log(window)
-    if (err) {
-      done(err)
+  jsdom.env(
+    {
+      url: top100,
+      scripts: ["http://code.jquery.com/jquery.js"],
+      done: (err, window) => {
+        console.log(window)
+        let $ = window.$
+        console.log("HN Links")
+        $("td.title:not(:last) a").each(() => {
+          console.log(" -", $(this).text())
+        })
+        done(window)
+      }
     }
-
-    done(window)
-  })
+  )
 
 }
