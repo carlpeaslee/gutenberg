@@ -16,16 +16,18 @@ export default function (ctx, done) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        query: `{
+        query: `
           mutation {
             createPoem(
               author: "${poem.author}"
               title: "${poem.title}"
               lines: ${poem.linecount}
               text: ${JSON.stringify(poem.lines)}
-            )
+            ) {
+              id
+            }
           }
-        }`
+        `
       })
     }
   }
@@ -37,7 +39,7 @@ export default function (ctx, done) {
       let poems = json
       console.log("poems", poems )
       poems.forEach( (poem) => {
-        if (poem.linecount < 50) {
+        if (poem.lines.length < 40) {
           fetch(shakespeareDb, dbOptions(poem))
             .then(resp=>resp.json())
             .then(json => console.log(json))
