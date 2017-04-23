@@ -1,5 +1,5 @@
 "use latest"
-import fetch from 'node-fetch'
+import fetch from 'isomorphic-fetch'
 
 export default function (ctx, done) {
 
