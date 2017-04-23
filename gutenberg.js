@@ -13,7 +13,7 @@ export default function (ctx, done) {
 
     let text = ''
     poem.lines.forEach( (line) => {
-      text = text.concat(line)
+      text = text.concat(line + '\n')
     })
     console.log(text)
     return {
