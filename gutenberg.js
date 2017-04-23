@@ -12,7 +12,6 @@ export default function (ctx, done) {
   let dbOptions = (poem) => {
 
     let json = JSON.stringify(poem.lines)
-    json = json.replace('"', '\"')
     return {
       method: 'POST',
       headers: {
