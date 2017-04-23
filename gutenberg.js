@@ -3,16 +3,45 @@ import fetch from 'isomorphic-fetch'
 
 export default function (ctx, done) {
 
-  let url = 'http://poetrydb.org/author/William Shakespeare'
-  let options = {
+  let poetryDb = 'http://poetrydb.org/author/William Shakespeare'
+  let poetryOptions = {
     method: 'GET'
   }
 
-  fetch(url, options)
+  let shakespeareDb = 'https://api.graph.cool/simple/v1/shakespeare'
+  let dbOptions = (poem) => {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query: `{
+        mutation {
+          createPoem(
+            author: "${poem.author}"
+            title: "${poem.title}"
+            lines: ${poem.linecount}
+            text: ${JSON.stringify(poem.lines)}
+          )
+        }
+      }`
+    })
+  }
+
+
+  fetch(poetryDb, poetryOptions)
     .then(resp => resp.json())
     .then(json => {
-      console.log(json)
-      done(json)
+      let poems = json.details
+      let mutation = ""
+      poems.forEach( (poem) => {
+        if (poem.linecount < 50) {
+          fetch(shakespeareDb, dbOptions(poem))
+            .then(resp=>resp.json())
+            .then(json => console.log(json))
+            .catch(e => console.log(e))
+        }
+      })
     })
 
 
