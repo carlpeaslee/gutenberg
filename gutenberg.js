@@ -7,18 +7,13 @@ export default function (ctx, done) {
 
 
   jsdom.env(
-    {
-      url: top100,
-      scripts: ["http://code.jquery.com/jquery.js"],
-      done: (err, window) => {
-        console.log(window)
-        let $ = window.$
-        console.log("HN Links")
-        $("td.title:not(:last) a").each(() => {
-          console.log(" -", $(this).text())
-        })
-        done(window)
+    top100,
+    ["http://code.jquery.com/jquery.js"],
+    function (err, window) {
+      if (err) {
+        done(err)
       }
+      done(window)
     }
   )
 
