@@ -3,16 +3,16 @@ import fetch from 'isomorphic-fetch'
 
 export default function (ctx, done) {
 
-  let top100 = 'https://www.gutenberg.org/browse/scores/top'
+  let url = 'http://poetrydb.org/title'
   let options = {
     method: 'GET'
   }
 
-  fetch(top100, options)
-    .then(resp => resp.text())
-    .then(text => {
-      console.log(text)
-      done(text)
+  fetch(url, options)
+    .then(resp => resp.json())
+    .then(json => {
+      console.log(json)
+      done(json)
     })
 
 
