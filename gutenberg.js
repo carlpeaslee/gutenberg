@@ -22,7 +22,7 @@ export default function (ctx, done) {
               author: "${poem.author}"
               title: "${poem.title}"
               lines: ${poem.linecount}
-              text: "${JSON.stringify(poem.lines)}"
+              text: \"${JSON.stringify(poem.lines)}\"
             ) {
               id
             }
