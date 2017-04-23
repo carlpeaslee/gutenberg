@@ -12,7 +12,7 @@ export default function (ctx, done) {
   let dbOptions = (poem) => {
 
     let text = ""
-    poem.text.forEach( (line) => {
+    poem.lines.forEach( (line) => {
       text = text.concat(`\n${line}`)
     })
     console.log(text)
@@ -43,14 +43,12 @@ export default function (ctx, done) {
     .then(resp => resp.json())
     .then(json => {
       let poems = json
-      console.log("poems", poems )
       poems.forEach( (poem) => {
         if (poem.lines.length < 40) {
-          console.log("dbOptions(poem)", dbOptions(poem) )
-          // fetch(shakespeareDb, dbOptions(poem))
-          //   .then(resp=>resp.json())
-          //   .then(json => console.log(json))
-          //   .catch(e => console.log(e))
+          fetch(shakespeareDb, dbOptions(poem))
+            .then(resp=>resp.json())
+            .then(json => console.log(json))
+            .catch(e => console.log(e))
         }
       })
     })
