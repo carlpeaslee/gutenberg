@@ -8,9 +8,13 @@ export default function (ctx, done) {
     method: 'GET'
   }
 
-  fetch(top100, options).then(resp => resp.json()).then(result => {
-    console.log(result)
+  fetch(top100, options)
+    .then(resp => resp.json())
+    .then(result => {
+      done(result)
+    })
+  .catch((e)=>{
+    done(e)
   })
 
-  done('we done')
 }
