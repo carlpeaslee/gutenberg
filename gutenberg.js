@@ -11,6 +11,7 @@ export default function (ctx, done) {
   fetch(top100, options)
     .then(resp => resp.text())
     .then(text => {
+      console.log(text)
       done(text)
     })
 
