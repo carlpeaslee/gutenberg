@@ -9,11 +9,13 @@ export default function (ctx, done) {
   }
 
   fetch(top100, options)
-    .then(resp => resp.json())
+    .then(resp => resp.blob())
     .then(result => {
+      console.log("result success")
       done(result)
     })
   .catch((e)=>{
+    console.log("error")
     done(e)
   })
 
