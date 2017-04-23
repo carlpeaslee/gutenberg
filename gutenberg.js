@@ -7,6 +7,7 @@ export default function (ctx, done) {
 
 
   jsdom.env(top100, (err, window) => {
+    console.log(window)
     if (err) {
       done(err)
     }
