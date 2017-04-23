@@ -10,22 +10,24 @@ export default function (ctx, done) {
 
   let shakespeareDb = 'https://api.graph.cool/simple/v1/shakespeare'
   let dbOptions = (poem) => {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      query: `{
-        mutation {
-          createPoem(
-            author: "${poem.author}"
-            title: "${poem.title}"
-            lines: ${poem.linecount}
-            text: ${JSON.stringify(poem.lines)}
-          )
-        }
-      }`
-    })
+    return {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: `{
+          mutation {
+            createPoem(
+              author: "${poem.author}"
+              title: "${poem.title}"
+              lines: ${poem.linecount}
+              text: ${JSON.stringify(poem.lines)}
+            )
+          }
+        }`
+      })
+    }
   }
 
 
