@@ -11,9 +11,9 @@ export default function (ctx, done) {
   let shakespeareDb = 'https://api.graph.cool/simple/v1/shakespeare'
   let dbOptions = (poem) => {
 
-    let text = ""
+    let text = ''
     poem.lines.forEach( (line) => {
-      text = text.concat(`\n${line}`)
+      text = text.concat(line)
     })
     console.log(text)
     return {
@@ -28,7 +28,7 @@ export default function (ctx, done) {
               author: "${poem.author}"
               title: "${poem.title}"
               lines: ${poem.linecount}
-              text: ${text}
+              text: "${text}"
             ) {
               id
             }
