@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch'
 
 export default function (ctx, done) {
 
-  let url = 'http://poetrydb.org/title'
+  let url = 'http://poetrydb.org/author/William Shakespeare'
   let options = {
     method: 'GET'
   }
