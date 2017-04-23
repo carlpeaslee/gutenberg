@@ -9,7 +9,7 @@ export default function (ctx, done) {
   }
 
   fetch(top100, options)
-    .then(resp => resp.blob())
+    .then(resp => resp.text())
     .then(result => {
       console.log("result success")
       done(result)
