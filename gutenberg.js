@@ -1,22 +1,17 @@
 "use latest"
-import fetch from 'isomorphic-fetch'
+import jsdom from 'jsdom'
 
 export default function (ctx, done) {
 
   let top100 = 'https://www.gutenberg.org/browse/scores/top'
-  let options = {
-    method: 'GET'
-  }
 
-  fetch(top100, options)
-    .then(resp => resp.text())
-    .then(result => {
-      console.log("result success")
-      done(result)
-    })
-  .catch((e)=>{
-    console.log("error")
-    done(e)
+
+  jsdom.env(top100, (err, window) => {
+    if (err) {
+      done(err)
+    }
+
+    done(window)
   })
 
 }
